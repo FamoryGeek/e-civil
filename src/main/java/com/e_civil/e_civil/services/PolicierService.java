@@ -31,6 +31,9 @@ public class PolicierService {
             policier.setNom(updatedPolicier.getNom());
             policier.setPrenom(updatedPolicier.getPrenom());
             policier.setArrondissement(updatedPolicier.getArrondissement());
+            policier.setEmail(updatedPolicier.getEmail());
+            policier.setPassword(updatedPolicier.getPassword());
+            policier.setRole(updatedPolicier.getRole());
             return policierRepository.save(policier);
         }).orElse(null);
     }
