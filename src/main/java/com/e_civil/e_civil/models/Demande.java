@@ -5,22 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pv {
+public class Demande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String libelle;
-    private String source;
-
-    @ManyToOne
-    private Policier policier;
+    private String typeDemande;
+    private String etat;
 
     @ManyToOne
     private Procureur procureur;
+
+    @ManyToOne
+    private Maire maire;
+
+    @ManyToOne
+    private Citoyen citoyen;
 }

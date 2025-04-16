@@ -1,12 +1,11 @@
 package com.e_civil.e_civil.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +18,14 @@ public class Citoyen extends Utilisateur {
     private String nom;
     private String prenom;
     private String nina;
+
+    @ManyToMany
+    @JoinTable(
+            name = "citoyen_pv",
+            joinColumns = @JoinColumn(name = "citoyen_id"),
+            inverseJoinColumns = @JoinColumn(name = "pv_id")
+    )
+    private List<Pv> pvs;
 
 
 

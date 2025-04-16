@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Policier {
+public class Policier extends Utilisateur{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,4 +18,7 @@ public class Policier {
     private String prenom;
 
     private String arrondissement;
+
+   /* @ManyToOne
+    private Pv pv;*/
 }

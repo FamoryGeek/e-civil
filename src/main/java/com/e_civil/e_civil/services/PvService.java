@@ -32,7 +32,8 @@ public class PvService {
             pvUpdate.setId(id);
             pvUpdate.setLibelle(pv.getLibelle());
             pvUpdate.setSource(pv.getSource());
-
+            pvUpdate.setPolicier(pv.getPolicier());
+            pvUpdate.setProcureur(pv.getProcureur());
             return pvRepository.save(pvUpdate);
         }
         return null;

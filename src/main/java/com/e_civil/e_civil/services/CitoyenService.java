@@ -37,6 +37,7 @@ public class CitoyenService {
             citoyenUpdate.setNina(citoyen.getNina());
             citoyenUpdate.setRole(citoyen.getRole());
             citoyenUpdate.setPassword(citoyen.getPassword());
+            citoyenUpdate.setPvs(citoyen.getPvs());
 
             return citoyenRepository.save(citoyenUpdate);
 
