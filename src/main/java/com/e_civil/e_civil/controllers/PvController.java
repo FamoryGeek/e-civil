@@ -33,7 +33,7 @@
         }
 
 
-        @PostMapping()
+        @PostMapping
         public Pv createPv(@RequestBody Pv pv){
             if (pv.getId() != null) {
                 System.out.println("Attention : création avec ID = " + pv.getId());

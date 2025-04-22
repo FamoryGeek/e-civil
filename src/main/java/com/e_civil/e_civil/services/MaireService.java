@@ -29,17 +29,15 @@ public class MaireService {
             throw new RuntimeException("Cet email est déjà utilisé");
         }
         Utilisateur utilisateur;
-        if(maireRequest.getRole() == EnumRole.MAIRE){
             Maire maire = new Maire();
             maire.setNom(maireRequest.getNom());
             maire.setPrenom(maireRequest.getPrenom());
             maire.setEmail(maireRequest.getEmail());
+            maire.setMairie(maireRequest.getMairie());
             maire.setPassword(passwordEncoder.encode(maireRequest.getPassword()));
             maire.setRole(EnumRole.MAIRE);
             utilisateur = maire;
-        }else {
-            throw new RuntimeException("Cet role n'est pas permit");
-        }
+
         utilisateur = utilisateurRepository.save(utilisateur);
         return MaireResponse.builder()
                 .id(utilisateur.getId())

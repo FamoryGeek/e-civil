@@ -29,17 +29,15 @@ public class CitoyenService {
             throw new RuntimeException("Cet email est déjà utilisé");
         }
         Utilisateur utilisateur;
-        if(citoyenRequest.getRole() == EnumRole.CITOYEN){
             Citoyen citoyen = new Citoyen();
             citoyen.setNom(citoyenRequest.getNom());
             citoyen.setPrenom(citoyenRequest.getPrenom());
             citoyen.setEmail(citoyenRequest.getEmail());
+            citoyen.setNina(citoyenRequest.getNina());
             citoyen.setPassword(passwordEncoder.encode(citoyenRequest.getPassword()));
             citoyen.setRole(EnumRole.CITOYEN);
             utilisateur = citoyen;
-        }else {
-            throw new RuntimeException("Cet role n'est pas permit");
-        }
+
         utilisateur = utilisateurRepository.save(utilisateur);
         return CitoyenResponse.builder()
                 .id(utilisateur.getId())
