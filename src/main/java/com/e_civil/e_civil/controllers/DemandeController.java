@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("demande")
+@RequestMapping("api/demandes")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class DemandeController {
     private DemandeService demandeService;

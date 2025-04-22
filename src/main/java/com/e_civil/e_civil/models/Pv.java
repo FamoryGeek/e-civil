@@ -1,5 +1,6 @@
 package com.e_civil.e_civil.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,9 @@ public class Pv {
     private String source;
 
     @ManyToOne
+    @JsonBackReference
     private Policier policier;
+
 
     @ManyToOne
     private Procureur procureur;

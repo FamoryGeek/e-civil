@@ -1,14 +1,20 @@
 package com.e_civil.e_civil.controllers;
 
+import com.e_civil.e_civil.dto.PolicierRequest;
+import com.e_civil.e_civil.dto.PolicierResponse;
 import com.e_civil.e_civil.models.Policier;
 import com.e_civil.e_civil.services.PolicierService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/policiers")
+@CrossOrigin("*")
 public class PolicierController {
 
     @Autowired
@@ -25,8 +31,18 @@ public class PolicierController {
     }
 
     @PostMapping
-    public Policier createPolicier(@RequestBody Policier policier) {
-        return policierService.createPolicier(policier);
+    public ResponseEntity<PolicierResponse> createPolicier(@Valid @RequestBody PolicierRequest policierRequest) {
+        try {
+            PolicierResponse response = policierService.createPolicier(policierRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (Exception e) {
+            PolicierResponse errorResponse = PolicierResponse.builder()
+                    .success(false)
+                    .message(e.getMessage())
+                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
     }
 
     @PutMapping("/{id}")
