@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/citoyen")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 @AllArgsConstructor
 public class CitoyenController {
     private CitoyenService citoyenService;

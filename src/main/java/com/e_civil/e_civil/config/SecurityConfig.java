@@ -41,9 +41,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/demandes/**").permitAll()
-                        .requestMatchers("/api/policiers/**").permitAll()
+                        .requestMatchers("/api/policier/**").permitAll()
                         .requestMatchers("/api/pvs/**").permitAll()
-                        .requestMatchers("/api/pvs/pvs").permitAll()
+                        .requestMatchers("/api/procureur/**").permitAll()
+                        .requestMatchers("/api/citoyen/**").permitAll()                        .requestMatchers("/api/procureur/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-resources/**").permitAll()
                         .requestMatchers("/api-docs/**").permitAll()

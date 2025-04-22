@@ -32,17 +32,16 @@ public class ProcureurService {
             throw new RuntimeException("Cet email est déjà utilisé");
         }
         Utilisateur utilisateur;
-        if(procureurRequest.getRole() == EnumRole.PROCUREUR){
+
             Procureur procureur = new Procureur();
             procureur.setNom(procureurRequest.getNom());
             procureur.setPrenom(procureurRequest.getPrenom());
             procureur.setEmail(procureurRequest.getEmail());
+            procureur.setTribunal(procureurRequest.getTribunal());
             procureur.setPassword(passwordEncoder.encode(procureurRequest.getPassword()));
             procureur.setRole(EnumRole.PROCUREUR);
             utilisateur = procureur;
-        }else {
-            throw new RuntimeException("Cet role n'est pas permit");
-        }
+
         utilisateur = utilisateurRepository.save(utilisateur);
         return ProcureurResponse.builder()
                 .id(utilisateur.getId())

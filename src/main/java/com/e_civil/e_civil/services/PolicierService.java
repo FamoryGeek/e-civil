@@ -39,17 +39,16 @@ public class PolicierService {
             throw new RuntimeException("Cet email est déjà utilisé");
         }
         Utilisateur utilisateur;
-        if(policierRequest.getRole() == EnumRole.POLICIER){
+
             Policier policier = new Policier();
             policier.setNom(policierRequest.getNom());
             policier.setPrenom(policierRequest.getPrenom());
             policier.setEmail(policierRequest.getEmail());
+            policier.setArrondissement(policierRequest.getArrondissement());
             policier.setPassword(passwordEncoder.encode(policierRequest.getPassword()));
             policier.setRole(EnumRole.POLICIER);
             utilisateur = policier;
-        }else {
-            throw new RuntimeException("Cet role n'est pas permit");
-        }
+
         utilisateur = utilisateurRepository.save(utilisateur);
         return PolicierResponse.builder()
                 .id(utilisateur.getId())
