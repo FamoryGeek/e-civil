@@ -17,6 +17,10 @@ public class PvService {
         return pvRepository.findAll();
     }
 
+    public List<Pv> getPvsByPolicier(Long policierId) {
+        return pvRepository.findByPolicierId(policierId);
+    }
+
     public Optional<Pv> findById(Long id) {
         return pvRepository.findById(id);
     }

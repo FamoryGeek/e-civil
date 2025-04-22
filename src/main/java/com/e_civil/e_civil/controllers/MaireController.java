@@ -1,15 +1,21 @@
 package com.e_civil.e_civil.controllers;
 
+import com.e_civil.e_civil.dto.MaireRequest;
+import com.e_civil.e_civil.dto.MaireResponse;
 import com.e_civil.e_civil.models.Maire;
 import com.e_civil.e_civil.services.MaireService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("maire")
+@RequestMapping("api/maire")
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class MaireController {
     private MaireService maireService;
@@ -25,8 +31,18 @@ public class MaireController {
     }
 
     @PostMapping
-    public Maire createMaire(@RequestBody Maire maire) {
-        return maireService.create(maire);
+    public ResponseEntity<MaireResponse> createMaire(@Valid @RequestBody MaireRequest maireRequest) {
+        try {
+            MaireResponse response = maireService.create(maireRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+        } catch (Exception e) {
+            MaireResponse errorResponse = MaireResponse.builder()
+                    .success(false)
+                    .message(e.getMessage())
+                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
     }
 
     @PatchMapping("{id}")

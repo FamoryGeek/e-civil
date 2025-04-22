@@ -1,13 +1,20 @@
 package com.e_civil.e_civil.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+import java.util.Set;
+
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
+@Setter
+@Getter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-
+@DiscriminatorValue("POLICIER")
 public class Policier extends Utilisateur{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +26,8 @@ public class Policier extends Utilisateur{
 
     private String arrondissement;
 
-   /* @ManyToOne
-    private Pv pv;*/
+    @OneToMany(mappedBy = "policier")
+    @JsonManagedReference
+    private Set<Pv> pv;
+
 }
